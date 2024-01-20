@@ -63,16 +63,16 @@ export default function InputText({ voices }: any) {
           aria-expanded={open}
           className="w-[200px] justify-between capitalize"
         >
-  {value
-      ? value || "Select voice..."
-      : "Select voice..."}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          {value
+              ? value || "Select voice..."
+              : "Select voice..."}
+            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search language..." />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandInput placeholder="Search Voice..." />
+          <CommandEmpty>No voice found.</CommandEmpty>
           <CommandGroup>
           {voices.voices.map((voice: { voice_id: React.Key | null | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }) => (
                     <CommandItem
