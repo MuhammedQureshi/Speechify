@@ -28,8 +28,6 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 
-
-
   
 export default function InputText({ voices }: any) {
 
