@@ -26,6 +26,8 @@ import {
 } from "@/components/ui/popover"
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import AudioPlayer from "./AudioPlayer";
+import textToSpeech from "@/app/api/ToSpeech";
 
 
   
@@ -33,20 +35,30 @@ export default function InputText({ voices }: any) {
 
     const [inputText, setInputText] = useState('');
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState("")
+    const [value, setValue] = React.useState("");
+    const [audioSrc, setAudioSrc] = useState<string | null>(null);
 
     const handleTextChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {-
       setInputText(event.target.value);
       setValue(value);
     };
   
-    const handleConvertToSpeech = () => {
+    const handleConvertToSpeech = async () => {
       console.log("Text to convert to speech:", inputText);
       console.log('Selected voice:', value);
+  
+      // Call the textToSpeech function to generate the audio data for the text "Hello welcome"
+      const data = await textToSpeech(inputText)
+      // Create a new Blob object from the audio data with MIME type 'audio/mpeg'
+      const blob = new Blob([data], { type: 'audio/mpeg' });
+      // Create a URL for the blob object
+      const url = URL.createObjectURL(blob);
+      // Set the audio URL state variable to the newly created URL
+      setAudioSrc(url);
     };
 
     return (
-
+      <div>
         <Card className="w-full">
             <CardHeader>
               <CardTitle>Text to speech converter</CardTitle>
@@ -114,6 +126,7 @@ export default function InputText({ voices }: any) {
               }  
             </CardFooter>
         </Card>
-
+        {audioSrc && <AudioPlayer audioSrc={audioSrc} />}
+      </div>
   )
 }
