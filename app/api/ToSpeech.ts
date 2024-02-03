@@ -6,7 +6,7 @@ const textToSpeech = async (text: any) => {
   // Do not use directly. Use environment variables.
   const apiKey = process.env.API_ELE;
 
-  console.log(apiKey);
+  // console.log(apiKey);
   // Set the ID of the voice to be used.
   const VOICE_ID = '21m00Tcm4TlvDq8ikWAM';
 
@@ -22,7 +22,7 @@ const textToSpeech = async (text: any) => {
     data: {
       text: text, // Pass in the inputText as the text to be converted to speech.
     },
-    responseType: 'arraybuffer', // Set the responseType to arraybuffer to receive binary data as response.
+    responseType: 'arraybuffer' as const, // Set the responseType to arraybuffer to receive binary data as response.
   };
 
   // Send the API request using Axios and wait for the response.
