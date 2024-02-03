@@ -84,7 +84,9 @@ export default function InputText({ voices }: any) {
           <CommandInput placeholder="Search Voice..." />
           <CommandEmpty>No voice found.</CommandEmpty>
           <CommandGroup>
-          {voices.voices.map((voice: { voice_id: React.Key | null | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }) => (
+          {voices.voices.map((voice: {
+            id: string; voice_id: React.Key | null | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; 
+}) => (
                     <CommandItem
                       key={voice.voice_id}
                       value={voice.name?.toString()}
@@ -96,7 +98,7 @@ export default function InputText({ voices }: any) {
                       <Check
                         className={cn(
                           "mr-2 h-4 w-4",
-                          value === voice.voice_id ? "opacity-100" : "opacity-0"
+                          value === voice.id ? "opacity-100" : "opacity-0"
                         )}
                       />
                       {voice.name}
@@ -126,7 +128,9 @@ export default function InputText({ voices }: any) {
               }  
             </CardFooter>
         </Card>
+        <div className="pt-10">
         {audioSrc && <AudioPlayer audioSrc={audioSrc} />}
+        </div>
       </div>
   )
 }

@@ -2,9 +2,11 @@ import axios from 'axios';
 
 // Define a function called textToSpeech that takes in a string called inputText as its argument.
 const textToSpeech = async (text: any) => {
-  // Set the API key for ElevenLabs API. 
+  // Set the API key for ElevenLabs API.
   // Do not use directly. Use environment variables.
-  const API_KEY = 'c3fd96de3aab334176c7ffbd19c26f1a';
+  const apiKey = process.env.API_ELE;
+
+  console.log(apiKey);
   // Set the ID of the voice to be used.
   const VOICE_ID = '21m00Tcm4TlvDq8ikWAM';
 
@@ -15,7 +17,7 @@ const textToSpeech = async (text: any) => {
     headers: {
       accept: 'audio/mpeg', // Set the expected response type to audio/mpeg.
       'content-type': 'application/json', // Set the content type to application/json.
-      'xi-api-key': `${API_KEY}`, // Set the API key in the headers.
+      'xi-api-key': apiKey, // Set the API key in the headers.
     },
     data: {
       text: text, // Pass in the inputText as the text to be converted to speech.
